@@ -1,0 +1,40 @@
+TabbedPanes
+===========
+
+TabbedPanes is a plugin providing easy to use tabbbed navigations in Rails. 
+
+
+Example
+=======
+
+Usage.
+
+In your HAML Layouts do:
+
+<!-- in your markup define -->
+- tabs_for(:namespace => :header_nav) do |tab|
+  = tab.dashboard 'Dashboard', dashboard_url
+  = tab.people 'People', people_url
+  = tab.tasks 'Tasks', tasks_url
+
+<!-- somewhere else define the correspondig panes -->
+- panes_for(:namespace => :header_nav) do |pane|
+  - pane.dashboard do 
+    %h1 Dashboard
+	= render :partial => @dashboard.notices
+  - pane.people do
+    = yield # renders, if selected, people/index.html.haml
+  - pane.tasks do
+    = yield # you get the idea
+
+In your Controllers do:
+
+class PeopleController < ApplicationController
+  ...
+  tabbed_pane :namespace => :header_nav, :only => :index
+  ...
+
+end
+
+
+Copyright (c) 2009 jiy.me, released under the MIT license
