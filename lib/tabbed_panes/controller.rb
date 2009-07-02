@@ -10,7 +10,7 @@ module TabbedPanes
 		end                       
 		
 		module ClassMethods
-			def tabbed_view(*args)
+			def tabbed_pane(*args)
 				options = args.extract_options!
 				name = args[0]
 				before_filter(options) do |controller|
