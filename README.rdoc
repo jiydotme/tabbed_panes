@@ -17,7 +17,7 @@ In your HAML Layouts do:
   - panes_for(:namespace => :header_nav) do |pane|
     - pane.dashboard do 
       %h1 Dashboard
-  	= render :partial => @dashboard.notices
+      = render :partial => @dashboard.notices
     - pane.people do
       = yield # renders, if selected, people/index.html.haml
     - pane.tasks do
