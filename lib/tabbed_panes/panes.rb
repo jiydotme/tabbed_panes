@@ -13,7 +13,7 @@ module TabbedPanes
 	
 	 	class DefaultPanesBuilder < PanesBuilder
       def begin_panes        
-				"<ul id='#{unique_object_id}_panes' class='panes'>"
+				"<ul id='#{mangle('panes')}' class='panes'>"
 			end           
 
 			def end_panes
@@ -22,15 +22,14 @@ module TabbedPanes
 
 			def pane_for(id, options = {}, &block)     
 				content = @context.capture(&block) if pane_selected?(id) || options[:force]
-				@context.concat(@context.content_tag(:li, content, :id => "#{unique_object_id}_#{id}_pane", :class => [pane_selected?(id) ? 'pane selected' : 'pane', options[:class]].join(' ')))
+				@context.concat(@context.content_tag(:li, content, :id => "#{mangle(id, 'pane')}", :class => [pane_selected?(id) ? 'pane selected' : 'pane', options[:class]].join(' ')))
 			end  
 
 		end
 
-		def initialize(object, context, options = {})
-			@object = object
+		def initialize(context, options = {})
 			@context = context
-			@builder = (options.delete(:builder) || DefaultPanesBuilder).new(@object, @context, options)
+			@builder = (options.delete(:builder) || DefaultPanesBuilder).new(@context, options)
 		end           
 
 		%w(begin_panes end_panes).each do |method|

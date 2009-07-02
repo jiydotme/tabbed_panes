@@ -1,18 +1,13 @@
 module TabbedPanes
 	class Builder  
-		def initialize(object, context, options = {})   
-			@object = object
+		def initialize(context, options = {})   
 			@context = context
-			@options = options
+			@options = options.reverse_merge!({ :namespace => :jiy })  
 		end
 		  
 		private
-			def unique_object_id  
-				case @object.class.to_s
-				when 'Symbol': "#{@object}"
-				when 'String': "#{@object}"
-				else "#{@context.dom_id(@object)}"
-				end
+			def mangle(*attr)
+				 "#{@options[:namespace]}_" + attr.join('_')
 			end
 			
 	end
