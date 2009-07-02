@@ -1,0 +1,40 @@
+/* tabs */
+ul.tabs {
+	margin: 0;
+	padding: 0 10px;
+	border-bottom:solid 2px #6B007E;    
+}
+ul.tabs li.tab {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: inline;	
+}
+ul.tabs li.tab a {
+	text-decoration: none;
+	font-size: 12px;
+	line-height:21px;
+	padding: 4px 10px;
+	background-color: #ccc;
+	color:#666;
+}
+ul.tabs li.tab.selected a,
+ul.tabs li.tab.selected a:hover {
+	background-color: #6B007E;
+	color:#fff;
+	border:none;	     
+}
+/* panes */
+ul.panes {
+	margin:0;
+	padding:0;
+}
+ul.panes li.pane {
+  display: none;	
+  list-style-type: none;	
+}
+ul.panes li.pane.selected {
+  margin:0;
+  padding:0;
+  display: block;
+}
